@@ -29,8 +29,8 @@ const App = () => (
           <Route path="/watch/:id" element={<WatchDetail />} />
           <Route path="/brands" element={<Brands />} />
           <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/private-dashboard" element={<Admin />} />
+          <Route path="/private-dashboard/login" element={<AdminLogin />} />
           <Route path="/import" element={<ImportPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

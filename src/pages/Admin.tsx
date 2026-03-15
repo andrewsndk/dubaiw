@@ -43,11 +43,11 @@ const Admin = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (!session) navigate("/admin/login");
+      if (!session) navigate("/private-dashboard/login");
     });
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (!session) navigate("/admin/login");
+      if (!session) navigate("/private-dashboard/login");
     });
     return () => subscription.unsubscribe();
   }, [navigate]);
@@ -203,7 +203,7 @@ const Admin = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/admin/login");
+    navigate("/private-dashboard/login");
   };
 
   const handleCsvImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
