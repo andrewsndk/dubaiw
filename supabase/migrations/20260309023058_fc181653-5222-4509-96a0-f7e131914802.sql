@@ -1,0 +1,1 @@
+ALTER TABLE public.watches ADD COLUMN status text DEFAULT 'available' CHECK (status IN ('available', 'on_order', 'out_of_stock'));

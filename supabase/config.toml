@@ -1,0 +1,7 @@
+project_id = "gdgcnguaoyrtsfubwsip"
+
+[functions.import-watches]
+verify_jwt = false
+
+[functions.send-inquiry]
+verify_jwt = false
