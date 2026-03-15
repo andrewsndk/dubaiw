@@ -10,6 +10,8 @@ if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
 } else {
   console.log("Supabase URL:", SUPABASE_URL);
   console.log("Supabase Key length:", SUPABASE_PUBLISHABLE_KEY.length);
+  console.log("Supabase Key starts with:", SUPABASE_PUBLISHABLE_KEY.substring(0, 4));
+  console.log("Supabase Key ends with:", SUPABASE_PUBLISHABLE_KEY.substring(SUPABASE_PUBLISHABLE_KEY.length - 4));
 }
 
 // Import the supabase client like this:
