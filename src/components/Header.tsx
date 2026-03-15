@@ -74,6 +74,9 @@ const Header = () => {
             <Link to="/about" className="text-sm font-medium tracking-wide hover:opacity-70" onClick={() => setMenuOpen(false)}>
               ABOUT US
             </Link>
+            <Link to="/admin" className="text-sm font-medium tracking-wide hover:opacity-70" onClick={() => setMenuOpen(false)}>
+              ADMIN
+            </Link>
           </div>
         </nav>
       )}
