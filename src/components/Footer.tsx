@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
@@ -20,8 +21,9 @@ const Footer = () => {
             <p className="text-sm opacity-70">Fair Pricing</p>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center">
+        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center relative">
           <p className="text-xs opacity-50">© {new Date().getFullYear()} Andii Luxury Watch. All rights reserved.</p>
+          <Link to="/admin" className="absolute bottom-0 right-0 text-[8px] opacity-10 hover:opacity-100">Admin</Link>
         </div>
       </div>
     </footer>
