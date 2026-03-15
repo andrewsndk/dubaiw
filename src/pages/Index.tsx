@@ -49,7 +49,12 @@ const Index = () => {
           .select("*")
           .order("created_at", { ascending: false })
           .range(from, from + pageSize - 1);
-        if (error) throw error;
+
+        if (error) {
+          console.error("Error fetching watches:", error);
+          throw error;
+        }
+
         if (!data || data.length === 0) break;
         all.push(...data);
         if (data.length < pageSize) break;
