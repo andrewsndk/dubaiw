@@ -12,7 +12,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate("/private-dashboard");
+      if (session) navigate("/admin");
     });
   }, [navigate]);
 
@@ -23,7 +23,7 @@ const AdminLogin = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      navigate("/private-dashboard");
+      navigate("/admin");
     }
     setLoading(false);
   };
