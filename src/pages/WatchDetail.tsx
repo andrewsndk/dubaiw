@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { AlertCircle, MessageCircle, Send } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BuyModal from "@/components/BuyModal";
+import WatchCard from "@/components/WatchCard";
 import { useCurrency } from "@/contexts/CurrencyContext";
 
 const WatchDetail = () => {
@@ -14,6 +16,18 @@ const WatchDetail = () => {
   const [buyOpen, setBuyOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { formatPrice } = useCurrency();
+
+  const { data: allWatches = [] } = useQuery({
+    queryKey: ["watches-all-for-recs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("watches")
+        .select("*")
+        .neq("status", "out_of_stock");
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const { data: watch, isLoading } = useQuery({
     queryKey: ["watch", id],
@@ -30,6 +44,32 @@ const WatchDetail = () => {
     : [];
 
   const currentImage = selectedImage || watch?.image_url;
+
+  // Recommendation engine — score by similarity signals
+  const recommendations = useMemo(() => {
+    if (!watch || allWatches.length === 0) return [];
+    const priceFloor = watch.price > 0 ? watch.price * 0.6 : 0;
+    const priceCeil = watch.price > 0 ? watch.price * 1.4 : Infinity;
+
+    return allWatches
+      .filter((w) => w.id !== watch.id)
+      // Hard filter: only recommend same gender if current watch has a gender set
+      .filter((w) => !watch.sex || !w.sex || w.sex === watch.sex)
+      .map((w) => {
+        let score = 0;
+        if (w.brand === watch.brand) score += 10;
+        if (watch.price > 0 && w.price >= priceFloor && w.price <= priceCeil) score += 6;
+        if (w.case_material && w.case_material === watch.case_material) score += 4;
+        if (w.condition && w.condition === watch.condition) score += 3;
+        if (w.strap && w.strap === watch.strap) score += 2;
+        if (w.sex && w.sex === watch.sex) score += 2;
+        if (w.complications && w.complications === watch.complications) score += 2;
+        return { watch: w, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4)
+      .map((r) => r.watch);
+  }, [watch, allWatches]);
 
   if (isLoading) {
     return (
@@ -277,6 +317,38 @@ const WatchDetail = () => {
             </div>
           </div>
         </section>
+
+        {/* Recommendations */}
+        {recommendations.length > 0 && (
+          <section className="border-t border-border">
+            <div className="container px-4 md:px-8 py-10 md:py-14">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-display font-bold tracking-wide text-foreground">
+                  YOU MAY ALSO LIKE
+                </h3>
+                <Link
+                  to="/catalog"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide"
+                >
+                  VIEW ALL →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+                {recommendations.map((rec, i) => (
+                  <motion.div
+                    key={rec.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.4, delay: i * 0.07 }}
+                  >
+                    <WatchCard watch={rec} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />

@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import aboutMechanism from "@/assets/about-mechanism.jpg";
-import aboutStore from "@/assets/about-store.jpg";
+import aboutStore from "@/assets/about.png";
 import aboutCraftsman from "@/assets/about-craftsman.jpg";
 
 const fadeUp = {
@@ -33,7 +33,7 @@ const About = () => {
               className="text-xs tracking-ultra-wide text-white/60 mb-4"
               {...fadeUp}
             >
-              EST. 2018 — DUBAI, UAE
+              DUBAI, UAE
             </motion.p>
             <motion.h2
               className="text-4xl sm:text-5xl md:text-7xl font-display font-bold leading-[0.95] max-w-3xl"
@@ -47,48 +47,46 @@ const About = () => {
               {...fadeUp}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              Andii Luxury Watch was born from a singular obsession — to bring the world's
-              most exceptional timepieces under one roof, with uncompromising
-              authenticity and service.
+              Andii Luxury Watch was founded on a singular obsession — to bring the world's
+              most exceptional timepieces together, offering uncompromising
+              authenticity and personalized service.
             </motion.p>
           </div>
         </section>
 
         {/* Story with store image */}
-        <section className="container px-4 md:px-8 py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div {...fadeUp}>
-              <p className="text-xs tracking-ultra-wide text-muted-foreground mb-4">OUR STORY</p>
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight mb-8">
-                From Passion<br />to Destination
-              </h3>
-              <div className="space-y-6 text-muted-foreground leading-relaxed">
-                <p>
-                  Founded in the heart of Dubai in 2018, Andii Luxury Watch began as a private
-                  collection shared among a close circle of connoisseurs. What started
-                  as a passion project between three friends quickly grew into one of
-                  the region's most trusted destinations for luxury timepieces.
-                </p>
-                <p>
-                  Our founder, driven by decades of fascination with horology, envisioned
-                  a space where collectors — whether acquiring their first piece or their
-                  fiftieth — could experience the same level of expertise, transparency,
-                  and care.
-                </p>
-              </div>
-            </motion.div>
-            <motion.div
-              className="relative overflow-hidden"
-              {...fadeUp}
-              transition={{ duration: 0.8, delay: 0.15 }}
-            >
-              <img
-                src={aboutStore}
-                alt="Andii Luxury Watch boutique interior"
-                className="w-full aspect-[4/5] object-cover"
-              />
-            </motion.div>
-          </div>
+        <section className="container px-4 md:px-8 py-20 md:py-28 space-y-16">
+          <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
+            <p className="text-xs tracking-ultra-wide text-muted-foreground mb-4">OUR STORY</p>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-8">
+              From Passion<br />to Destination
+            </h3>
+            <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
+              <p>
+                Founded in the heart of Dubai, Andii Luxury Watch began as an exclusive
+                private collection. What started as a dedicated passion for the art of
+                fine watchmaking quickly evolved into one of the region's most
+                distinguished destinations for luxury timepieces.
+              </p>
+              <p>
+                Our founder, driven by decades of fascination with horology, envisioned
+                a space where collectors — whether acquiring their first piece or their
+                fiftieth — could experience the same level of expertise, transparency,
+                and care.
+              </p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative overflow-hidden w-full max-w-3xl mx-auto flex justify-start rounded-2xl shadow-xl"
+            {...fadeUp}
+            transition={{ duration: 0.8, delay: 0.15 }}
+          >
+            <img
+              src={aboutStore}
+              alt="Andii Luxury Watch boutique interior"
+              className="w-[117.6%] h-auto max-w-none object-left"
+            />
+          </motion.div>
         </section>
 
         {/* Mechanism + Craftsman image gallery */}
@@ -191,7 +189,7 @@ const About = () => {
             {[
               { number: "500+", label: "Watches in Collection" },
               { number: "50+", label: "Luxury Brands" },
-              { number: "6+", label: "Years of Trust" },
+              { number: "100%", label: "Authenticity Guaranteed" },
               { number: "30+", label: "Countries Served" },
             ].map((stat, i) => (
               <motion.div

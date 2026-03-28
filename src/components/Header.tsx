@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Search, Heart, MessageCircle, Send } from "lucide-react";
 import { useState } from "react";
 import { useCurrency, SUPPORTED_CURRENCIES, type Currency } from "@/contexts/CurrencyContext";
@@ -12,6 +12,23 @@ import {
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { currency, setCurrency } = useCurrency();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      // Already on home — scroll smoothly to the collection section
+      const section = document.getElementById("collection");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else {
+      navigate("/");
+    }
+  };
 
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50">
@@ -24,11 +41,11 @@ const Header = () => {
           <span className="text-sm font-medium tracking-wide hidden sm:inline">MENU</span>
         </button>
 
-        <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+        <button onClick={handleLogoClick} className="absolute left-1/2 -translate-x-1/2 hover:opacity-70 transition-opacity">
           <h1 className="text-2xl md:text-3xl font-display tracking-ultra-wide font-semibold text-foreground">
             ANDII
           </h1>
-        </Link>
+        </button>
 
         <div className="flex items-center gap-3 sm:gap-4">
           <DropdownMenu>

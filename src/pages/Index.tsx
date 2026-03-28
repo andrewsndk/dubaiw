@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WatchCard from "@/components/WatchCard";
 import CollectionFilters, { type Filters } from "@/components/CollectionFilters";
+import ContactModal from "@/components/ContactModal";
 import watchHero from "@/assets/watch-hero.png";
 import type { Tables } from "@/integrations/supabase/types";
 
@@ -68,7 +69,14 @@ const Index = () => {
   const [sortBy, setSortBy] = useState("created_at-desc");
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [visibleCount, setVisibleCount] = useState(50);
+  const [contactOpen, setContactOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Auto-open contact modal once per session
+  useEffect(() => {
+    const timer = setTimeout(() => setContactOpen(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Reset pagination when filters or search change
   useEffect(() => {
@@ -259,7 +267,7 @@ const Index = () => {
         </section>
 
         {/* Products Grid - Infinite Scroll */}
-        <section className="container px-4 md:px-8 py-12">
+        <section id="collection" className="container px-4 md:px-8 py-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl md:text-4xl font-display font-bold tracking-wide text-foreground">
               OUR COLLECTION
@@ -336,6 +344,30 @@ const Index = () => {
       </main>
 
       <Footer />
+
+      {/* Floating contact button */}
+      <motion.button
+        id="contact-manager-btn"
+        onClick={() => setContactOpen(true)}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium tracking-wide shadow-2xl"
+        style={{
+          background: "linear-gradient(135deg, #c8a84b 0%, #d4af37 50%, #b8962e 100%)",
+          color: "#0f0f0f",
+          boxShadow: "0 8px 32px rgba(212,175,55,0.45), 0 2px 8px rgba(0,0,0,0.4)",
+        }}
+        whileHover={{ scale: 1.06, boxShadow: "0 12px 40px rgba(212,175,55,0.6), 0 2px 8px rgba(0,0,0,0.4)" }}
+        whileTap={{ scale: 0.96 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.2 }}
+        aria-label="Contact manager"
+      >
+        <MessageCircle className="w-4 h-4" />
+        <span className="hidden sm:inline">Contact a Manager</span>
+        <span className="sm:hidden">Manager</span>
+      </motion.button>
+
+      <ContactModal open={contactOpen} onOpenChange={setContactOpen} />
     </div>
   );
 };
