@@ -32,22 +32,16 @@ const Header = () => {
 
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50">
-      <div className="container flex items-center justify-between h-16 px-4 md:px-8">
+      <div className="container flex flex-wrap md:flex-nowrap items-center justify-between py-3 md:py-0 md:h-16 px-4 md:px-8">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex items-center gap-2 text-foreground hover:opacity-70 transition-opacity"
+          className="flex items-center gap-2 text-foreground hover:opacity-70 transition-opacity order-1"
         >
           <Menu className="w-5 h-5" />
           <span className="text-sm font-medium tracking-wide hidden sm:inline">MENU</span>
         </button>
 
-        <button onClick={handleLogoClick} className="absolute left-1/2 -translate-x-1/2 hover:opacity-70 transition-opacity">
-          <h1 className="text-2xl md:text-3xl font-display tracking-ultra-wide font-semibold text-foreground">
-            STATUSWATCH
-          </h1>
-        </button>
-
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 order-2 md:order-3">
           <DropdownMenu>
             <DropdownMenuTrigger className="text-xs sm:text-sm font-medium tracking-wide text-foreground hover:opacity-70 transition-opacity focus:outline-none">
               {currency}
@@ -77,6 +71,12 @@ const Header = () => {
             <Heart className="w-5 h-5 text-foreground" />
           </button>
         </div>
+
+        <button onClick={handleLogoClick} className="order-3 md:order-2 w-full md:w-auto flex justify-center mt-4 md:mt-0 md:absolute md:left-1/2 md:-translate-x-1/2 hover:opacity-70 transition-opacity">
+          <h1 className="text-2xl md:text-3xl font-display tracking-ultra-wide font-semibold text-foreground">
+            STATUSWATCH
+          </h1>
+        </button>
       </div>
 
       {menuOpen && (
