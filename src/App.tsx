@@ -13,6 +13,7 @@ import AdminLogin from "./pages/AdminLogin";
 import ImportPage from "./pages/ImportPage";
 import NotFound from "./pages/NotFound";
 import { CurrencyProvider } from "./contexts/CurrencyContext";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
       </BrowserRouter>
       </CurrencyProvider>
     </TooltipProvider>
+    <Analytics />
   </QueryClientProvider>
 );
 
