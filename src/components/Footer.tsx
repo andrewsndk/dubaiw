@@ -12,8 +12,7 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="text-sm font-medium tracking-wide mb-4">CONTACT</h4>
-            <p className="text-sm opacity-70">WhatsApp: +971 XX XXX XXXX</p>
-            <p className="text-sm opacity-70">Telegram: @watchlab</p>
+            <p className="text-sm opacity-70">Coming soon</p>
           </div>
           <div>
             <h4 className="text-sm font-medium tracking-wide mb-4">GUARANTEES</h4>
