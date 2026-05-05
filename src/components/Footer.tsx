@@ -5,7 +5,7 @@ const Footer = () => {
       <div className="container px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl tracking-ultra-wide font-semibold mb-4">ANDII LUXURY WATCH</h3>
+            <h3 className="text-xl tracking-ultra-wide font-semibold mb-4">STATUSWATCH</h3>
             <p className="text-sm opacity-70 leading-relaxed">
               Your trusted destination for luxury timepieces. Authenticity guaranteed.
             </p>
@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center relative">
-          <p className="text-xs opacity-50">© {new Date().getFullYear()} Andii Luxury Watch. All rights reserved.</p>
+          <p className="text-xs opacity-50">© {new Date().getFullYear()} StatusWatch. All rights reserved.</p>
           <Link to="/admin" className="absolute bottom-0 right-0 text-[8px] opacity-10 hover:opacity-100">Admin</Link>
         </div>
       </div>

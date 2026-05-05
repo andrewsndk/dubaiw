@@ -146,18 +146,9 @@ const WatchDetail = () => {
               )}
 
               <div className="mt-6">
-                {watch.price > 0 ? (
-                  <>
-                    <p className="text-sm text-muted-foreground">Our price:</p>
-                    <p className="text-2xl md:text-3xl font-bold text-foreground">
-                      {formatPrice(watch.price, watch.currency)}
-                    </p>
-                  </>
-                ) : (
-                  <p className="text-2xl md:text-3xl font-bold text-foreground uppercase tracking-wider text-primary/80">
-                    Price on request
-                  </p>
-                )}
+                <p className="text-2xl md:text-3xl font-bold text-foreground uppercase tracking-wider text-primary/80">
+                  Price on request
+                </p>
               </div>
 
               {/* Action Button */}
@@ -274,7 +265,7 @@ const WatchDetail = () => {
               </h3>
               <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                 <p>
-                  Andii Luxury Watch are confident that you will be delighted with the quality of our products. 
+                  StatusWatch are confident that you will be delighted with the quality of our products. 
                   However, we understand that there can be exceptions. It is therefore important that you 
                   inspect your product(s) promptly upon receipt and check for any defects.
                 </p>

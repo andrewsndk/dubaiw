@@ -47,7 +47,7 @@ const About = () => {
               {...fadeUp}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              Andii Luxury Watch was founded on a singular obsession — to bring the world's
+              StatusWatch was founded on a singular obsession — to bring the world's
               most exceptional timepieces together, offering uncompromising
               authenticity and personalized service.
             </motion.p>
@@ -63,7 +63,7 @@ const About = () => {
             </h3>
             <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
               <p>
-                Founded in the heart of Dubai, Andii Luxury Watch began as an exclusive
+                Founded in the heart of Dubai, StatusWatch began as an exclusive
                 private collection. What started as a dedicated passion for the art of
                 fine watchmaking quickly evolved into one of the region's most
                 distinguished destinations for luxury timepieces.
@@ -83,7 +83,7 @@ const About = () => {
           >
             <img
               src={aboutStore}
-              alt="Andii Luxury Watch boutique interior"
+              alt="StatusWatch boutique interior"
               className="w-[117.6%] h-auto max-w-none object-left"
             />
           </motion.div>
@@ -123,7 +123,7 @@ const About = () => {
                     with decades of combined expertise.
                   </p>
                   <p>
-                    Today, Andii Luxury Watch curates over 500 exceptional timepieces from the
+                    Today, StatusWatch curates over 500 exceptional timepieces from the
                     world's most prestigious manufactures — Rolex, Audemars Piguet, Patek
                     Philippe, Richard Mille, and many more. We serve clients across the
                     GCC, Europe, and beyond.

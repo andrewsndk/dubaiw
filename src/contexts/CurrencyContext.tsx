@@ -67,11 +67,10 @@ export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const formatPrice = useCallback(
-    (amount: number, from: string) => {
-      const converted = convert(amount, from);
-      return `${converted.toLocaleString()} ${CURRENCY_SYMBOLS[currency] ?? currency}`;
+    (_amount: number, _from: string) => {
+      return "Price on request";
     },
-    [convert, currency]
+    []
   );
 
   const setCurrency = useCallback((c: Currency) => setCurrencyState(c), []);

@@ -43,7 +43,7 @@ const Header = () => {
 
         <button onClick={handleLogoClick} className="absolute left-1/2 -translate-x-1/2 hover:opacity-70 transition-opacity">
           <h1 className="text-2xl md:text-3xl font-display tracking-ultra-wide font-semibold text-foreground">
-            ANDII
+            STATUSWATCH
           </h1>
         </button>
 
@@ -90,9 +90,6 @@ const Header = () => {
             </Link>
             <Link to="/about" className="text-sm font-medium tracking-wide hover:opacity-70" onClick={() => setMenuOpen(false)}>
               ABOUT US
-            </Link>
-            <Link to="/admin" className="text-sm font-medium tracking-wide hover:opacity-70" onClick={() => setMenuOpen(false)}>
-              ADMIN
             </Link>
           </div>
         </nav>
